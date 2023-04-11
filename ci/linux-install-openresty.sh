@@ -37,6 +37,8 @@ USE_OPENSSL3=${USE_OPENSSL3-no}
 OPENSSL3_PREFIX=${OPENSSL3_PREFIX-/home/runner}
 SSL_LIB_VERSION=${SSL_LIB_VERSION-openssl}
 
+OPENRESTY_VERSION="default"
+
 if [ "$OPENRESTY_VERSION" == "source" ]; then
     if [ "$COMPILE_OPENSSL3" == "yes" ]; then
         apt install -y build-essential
@@ -82,4 +84,4 @@ else
     openresty="openresty-debug=$OPENRESTY_VERSION*"
 fi
 
-sudo apt-get install "$openresty" openresty-openssl111-debug-dev libldap2-dev
+sudo apt-get install -y "$openresty" openresty-openssl111-debug-dev libldap2-dev

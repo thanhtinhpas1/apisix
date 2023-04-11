@@ -74,7 +74,7 @@ install_grpcurl () {
     # For more versions, visit https://github.com/fullstorydev/grpcurl/releases
     GRPCURL_VERSION="1.8.5"
     wget -q https://github.com/fullstorydev/grpcurl/releases/download/v${GRPCURL_VERSION}/grpcurl_${GRPCURL_VERSION}_linux_x86_64.tar.gz
-    tar -xvf grpcurl_${GRPCURL_VERSION}_linux_x86_64.tar.gz -C /usr/local/bin
+    sudo tar -xvf grpcurl_${GRPCURL_VERSION}_linux_x86_64.tar.gz -C /usr/local/bin
 }
 
 install_vault_cli () {
@@ -82,7 +82,7 @@ install_vault_cli () {
     # the certificate can't be verified in CentOS7, see
     # https://blog.devgenius.io/lets-encrypt-change-affects-openssl-1-0-x-and-centos-7-49bd66016af3
     wget -q --no-check-certificate https://releases.hashicorp.com/vault/${VAULT_VERSION}/vault_${VAULT_VERSION}_linux_amd64.zip
-    unzip vault_${VAULT_VERSION}_linux_amd64.zip && mv ./vault /usr/local/bin
+    sudo unzip vault_${VAULT_VERSION}_linux_amd64.zip && mv ./vault /usr/local/bin
 }
 
 install_nodejs () {
@@ -92,9 +92,9 @@ install_nodejs () {
     tar -xvf node-v${NODEJS_VERSION}-linux-x64.tar.xz
     rm -f /usr/local/bin/node
     rm -f /usr/local/bin/npm
-    mv node-v${NODEJS_VERSION}-linux-x64 ${NODEJS_PREFIX}
-    ln -s ${NODEJS_PREFIX}/bin/node /usr/local/bin/node
-    ln -s ${NODEJS_PREFIX}/bin/npm /usr/local/bin/npm
+    sudo mv node-v${NODEJS_VERSION}-linux-x64 ${NODEJS_PREFIX}
+    sudo ln -s ${NODEJS_PREFIX}/bin/node /usr/local/bin/node
+    sudo ln -s ${NODEJS_PREFIX}/bin/npm /usr/local/bin/npm
 
     npm config set registry https://registry.npmjs.org/
 }

@@ -31,6 +31,8 @@ do_install() {
 
     ./utils/linux-install-luarocks.sh
 
+    ./utils/linux-install-go.sh
+
     ./ci/linux-install-etcd-client.sh
 
     # install rust
@@ -41,7 +43,9 @@ do_install() {
     # sudo apt-get install tree -y
     # tree deps
 
-    git clone --depth 1 https://github.com/openresty/test-nginx.git test-nginx
+    if [ ! -d test-nginx ] ; then
+        git clone --depth 1 https://github.com/openresty/test-nginx.git test-nginx
+    fi
     make utils
 
     mkdir -p build-cache
@@ -65,6 +69,8 @@ do_install() {
 
     # install vault cli capabilities
     install_vault_cli
+
+    sudo apt-get install -y netcat
 }
 
 script() {
